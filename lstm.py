@@ -10,7 +10,7 @@ from utils import load_w2v, batch_index, load_inputs_twitter, load_word_id_mappi
 
 
 FLAGS = tf.app.flags.FLAGS
-tf.app.flags.DEFINE_integer('embedding_dim', 100, 'dimension of word embedding')
+tf.app.flags.DEFINE_integer('embedding_dim', 300, 'dimension of word embedding')
 tf.app.flags.DEFINE_integer('batch_size', 100, 'number of example per batch')
 tf.app.flags.DEFINE_integer('n_hidden', 200, 'number of hidden unit')
 tf.app.flags.DEFINE_float('learning_rate', 0.01, 'learning rate')
@@ -126,12 +126,12 @@ class LSTM(object):
             test_summary_writer = tf.train.SummaryWriter(_dir + '/test', sess.graph)
             validate_summary_writer = tf.train.SummaryWriter(_dir + '/validate', sess.graph)
 
-            tr_x, tr_sen_len, tr_y = load_inputs_twitter(
+            tr_x, tr_sen_len, tr_y,reversed_dict_tr = load_inputs_twitter(
                 FLAGS.train_file_path,
                 self.word_id_mapping,
                 self.max_sentence_len
             )
-            te_x, te_sen_len, te_y = load_inputs_twitter(
+            te_x, te_sen_len, te_y,reversed_dict_te = load_inputs_twitter(
                 FLAGS.test_file_path,
                 self.word_id_mapping,
                 self.max_sentence_len

@@ -8,7 +8,7 @@ import sys
 
 lines = open(sys.argv[1]).readlines()
 fp = open(sys.argv[2], 'w')
-for i in xrange(0, len(lines), 3):
+for i in range(0, len(lines), 3):
     sentence, aspect, polarity = lines[i].strip(), lines[i + 1].strip(), lines[i + 2].strip()
     if polarity == '0':
         polarity = 'neutral'
@@ -18,7 +18,7 @@ for i in xrange(0, len(lines), 3):
         polarity = 'negative'
 
     words = sentence.split()
-    print words
+    print (words)
     ind = words.index('$T$')
     tmp = []
     for i, word in enumerate(words[:ind], 0):
